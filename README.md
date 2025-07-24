@@ -67,16 +67,16 @@ cd document-chat-bot
 Создай секрет key_for_chat_service и загрузи JSON ключ сервисного аккаунта
 
 ## Скриншоты работы бота
-### 1) при создании опроса
+1) при создании опроса
 <img width="600" height="679" alt="image" src="https://github.com/user-attachments/assets/dd92ac77-c93d-4d4a-98f0-2e24e6aa9642" />
 
-### 2) при завершении опроса
+2) при завершении опроса
 <img width="600" height="679" alt="image" src="https://github.com/user-attachments/assets/2dcfc8e8-49ec-41c3-ad45-fa6cffef9ef6" />
 
-### 3) если отправлять также в личные сообщения или на почту результат опроса пользователям
+3) если отправлять также в личные сообщения или на почту результат опроса пользователям
    <img width="600" height="346" alt="image" src="https://github.com/user-attachments/assets/a03761eb-69fd-4627-a4b4-67f4fe6ae869" />
 
-### 4) пример того,что приходит пользователям 
+4) пример того,что приходит пользователям 
 <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/2a05a0a7-fd88-4802-b712-e23c8442b681" />
 
 
