@@ -1,0 +1,8 @@
+functions-framework==3.*
+google-cloud-logging==3.0.0
+oauth2client==4.1.3
+google-api-python-client
+google-cloud-firestore
+google-auth-oauthlib
+google-cloud-secret-manager
+flask
