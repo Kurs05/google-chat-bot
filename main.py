@@ -37,7 +37,7 @@ def access_secret_version(secret_id: str, project_id: str, version_id: str = "la
     secret_name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
     response = client.access_secret_version(name=secret_name)
     return response.payload.data.decode("UTF-8")
-
+# подставляем свое название секрета и id проекта
 SERVICE_ACCOUNT_FILE = json.loads(access_secret_version('key_for_chat_service',111111111111))
 
 db = firestore.Client.from_service_account_info(SERVICE_ACCOUNT_FILE)
