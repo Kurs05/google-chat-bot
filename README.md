@@ -2,81 +2,100 @@
 
 # Document Chat Bot
 
-Бот для Google Chat, при помощи которого можно создавать опросы для пользователей внутри домена и отслеживать результаты голосования.
+A Google Chat bot that allows you to create polls for domain users and track voting results.
 
-##  Стек технологий
+##  Tech Stack
 
-- Python 3.11
-- Google Cloud Functions
-- Firestore (Cloud Firestore)
-- Gmail API
-- Google Chat API 
-- Сервисные аккаунты с OAuth и делегированием
+- Python 3.11  
+- Google Cloud Functions  
+- Firestore (Cloud Firestore)  
+- Gmail API  
+- Google Chat API  
+- Service accounts with OAuth and domain-wide delegation  
 
 ---
-## Возможности Document Chat Bot
-Document Chat Bot — это корпоративный бот для Google Chat, предназначенный для организации опросов внутри домена с сохранением и обработкой результатов в Firestore. Он упрощает сбор обратной связи и автоматизирует взаимодействие с пользователями через Google Chat и Gmail.
 
-### Функциональные возможности:
-- Создание опросов через команды в Google Chat  <br> Бот поддерживает понятный синтаксис для создания опросов с заранее заданными вариантами ответа.
+## Features of Document Chat Bot
 
-- Обработка голосов и обновление информации в реальном времени <br> Бот отслеживает выбор пользователей и отображает обновлённые данные по мере голосования.
+**Document Chat Bot** is a corporate Google Chat bot designed to create internal domain polls with storage and processing of results in Firestore. It simplifies collecting feedback and automates user interaction via Google Chat and Gmail.
 
-- Формирование и хранение результатов в Firestore <br> Все данные опросов, включая список участников и их ответы, сохраняются в Firestore.
+### Functional Capabilities:
 
-- Уведомления через Gmail API <br> При необходимости бот может отправлять письма создателям опроса с результатом голосования.
+- Create polls via Google Chat commands  <br>
+  The bot supports a clear syntax to create polls with predefined answer options.
 
-- Работа с использованием сервисного аккаунта с делегированием на уровне домена <br> Это позволяет работать от имени пользователя без необходимости авторизации с его стороны.
+- Real-time vote handling and information updates  <br>
+  The bot tracks user choices and updates data as users vote.
 
-- Интеграция с Secret Manager <br> Все чувствительные данные (например, ключи и настройки) могут храниться в безопасном виде.
-##  Установка и настройка
+- Store and manage results in Firestore  <br>
+  All poll data, including participant lists and their answers, is stored in Firestore.
 
-### 1. Клонирование проекта
+- Notifications via Gmail API  <br>
+  If needed, the bot can send poll results to poll creators by email.
+
+- Operates using a service account with domain-wide delegation  <br>
+  This allows acting on behalf of a user without requiring manual authorization.
+
+- Integration with Secret Manager  <br>
+  All sensitive data (like keys and settings) can be stored securely.
+
+---
+
+##  Installation and Setup
+
+### 1. Clone the Project
 
 ```bash
 git clone https://github.com/Kurs05/document-chat-bot.git
 cd document-chat-bot
-
 ```
-### 2. Структура проекта 
-   Необходимо, чтобы обязательно в проекте был файл requirements.txt и main.py , без них cloud_function выдаст ошибку.
+
+### 2. Project Structure  
+Make sure the project includes both `requirements.txt` and `main.py`. Without them, Cloud Function will throw an error.
 
 <img width="500" height="401" alt="image" src="https://github.com/user-attachments/assets/6f7a7d26-5554-469b-af68-d71ce9700207" />
 
-### 3. Права сервисного аккаунта и делегирование
+### 3. Service Account Roles and Delegation
 
-  Сервисному аккаунту, который отвечает за данного чат-бота необходимо выдать роли:
-  ```bash
-  ["https://www.googleapis.com/auth/chat.bot", 
-  "https://www.googleapis.com/auth/chat.messages.create",
-  "https://www.googleapis.com/auth/gmail.send",
-  "https://www.googleapis.com/auth/userinfo.email",
-  "https://www.googleapis.com/auth/contacts.readonly"]
-  ```
-Также необходимо делегирование на уровне домена, без этого бот не заработает.
+Assign the following roles (OAuth scopes) to the service account used by the bot:
 
-### 4. Какие сервисы необходимо подключить для работы бота:
- #### В APIs & Services
-  - 1)People Api
-  - 2)Secret Manager Api
-  - 3)Gmail Api
-  - 4)Google Chat Api
+```bash
+["https://www.googleapis.com/auth/chat.bot", 
+ "https://www.googleapis.com/auth/chat.messages.create",
+ "https://www.googleapis.com/auth/gmail.send",
+ "https://www.googleapis.com/auth/userinfo.email",
+ "https://www.googleapis.com/auth/contacts.readonly"]
+```
 
-### 5. Подключение секрета
-#### В Secret Manager
-Создай секрет key_for_chat_service и загрузи JSON ключ сервисного аккаунта
+Also, domain-wide delegation must be enabled. Without it, the bot will not function.
 
-## Скриншоты работы бота
-1) при создании опроса
+---
+
+### 4. Enabled APIs Required for Bot Functionality  
+#### In *APIs & Services*:
+-  People API  
+-  Secret Manager API  
+-  Gmail API  
+-  Google Chat API  
+
+---
+
+### 5. Connect the Secret  
+#### In *Secret Manager*  
+Create a secret named `key_for_chat_service` and upload your service account's JSON key there.
+
+---
+
+## Bot Screenshots
+
+1) Poll creation  
 <img width="600" height="679" alt="image" src="https://github.com/user-attachments/assets/dd92ac77-c93d-4d4a-98f0-2e24e6aa9642" />
 
-2) при завершении опроса
+2) Poll closure  
 <img width="600" height="679" alt="image" src="https://github.com/user-attachments/assets/2dcfc8e8-49ec-41c3-ad45-fa6cffef9ef6" />
 
-3) если отправлять также в личные сообщения или на почту результат опроса пользователям
-   <img width="600" height="346" alt="image" src="https://github.com/user-attachments/assets/a03761eb-69fd-4627-a4b4-67f4fe6ae869" />
+3) If results are also sent via DM or email  
+<img width="600" height="346" alt="image" src="https://github.com/user-attachments/assets/a03761eb-69fd-4627-a4b4-67f4fe6ae869" />
 
-4) пример того,что приходит пользователям 
+4) Example of what users receive  
 <img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/2a05a0a7-fd88-4802-b712-e23c8442b681" />
-
-
